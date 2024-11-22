@@ -46,6 +46,7 @@ public class RouletteWheel {
         }
     }
 
+
     public void spinWheel() {
         int index = random.nextInt(wheel.size());
         winningSlot = wheel.get(index);
