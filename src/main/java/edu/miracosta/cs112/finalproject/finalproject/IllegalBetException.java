@@ -1,11 +1,13 @@
 package edu.miracosta.cs112.finalproject.finalproject;
 
-public class IllegalBetException extends RuntimeException {
+class IllegalBetException extends Exception
+{
 
-    public IllegalBetException(String message) {
+    public IllegalBetException() {}
+
+
+    public IllegalBetException(String message)
+    {
         super(message);
-    }
-    public IllegalBetException(String message, Throwable cause) {
-        super(message, cause);
     }
 }
