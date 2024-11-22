@@ -1,5 +1,8 @@
 package edu.miracosta.cs112.finalproject.finalproject;
 
-public class RedBet implements Bet{
+import java.util.Objects;
+
+public interface RedBet{
+    final double redMultiplier = 2.15;
 
 }

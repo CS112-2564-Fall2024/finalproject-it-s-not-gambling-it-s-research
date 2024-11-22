@@ -1,5 +1,8 @@
 package edu.miracosta.cs112.finalproject.finalproject;
 
-public class BlackBet implements Bet{
+public interface BlackBet{
+    final double blackMultiplier = 1.85;
+
+
 
 }
