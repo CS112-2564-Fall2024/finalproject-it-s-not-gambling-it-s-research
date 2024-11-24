@@ -8,6 +8,5 @@ class IllegalBetException extends Exception
 
     public IllegalBetException(String message)
     {
-        super(message);
-    }
+        super(message);}
 }
