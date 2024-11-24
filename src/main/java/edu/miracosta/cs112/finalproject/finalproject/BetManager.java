@@ -1,18 +1,14 @@
 package edu.miracosta.cs112.finalproject.finalproject;
 
-import java.util.Objects;
-
 public class BetManager extends RouletteWheel implements RedBet, BlackBet {
     double wallet = 1000;
     double currentBet = 0;
     String bettingColor;
 
-    public BetManager(){
-
+    public BetManager() {
     }
 
-    public BetManager(double wallet, double currentBet, String bettingColor)
-    {
+    public BetManager(double wallet, double currentBet, String bettingColor) {
         this.wallet = wallet;
         this.currentBet = currentBet;
         this.bettingColor = bettingColor;
@@ -35,7 +31,7 @@ public class BetManager extends RouletteWheel implements RedBet, BlackBet {
         return currentBet;
     }
 
-    public String getBettingColor(){
+    public String getBettingColor() {
         return bettingColor;
     }
 
@@ -43,34 +39,59 @@ public class BetManager extends RouletteWheel implements RedBet, BlackBet {
         this.bettingColor = bettingColor;
     }
 
-    public void placeBet(String color) throws IllegalBetException{
-        try
-        {
-            if(wallet <= 0)
-            {
-                throw new IllegalBetException();
-            }
+    @Override
+    public boolean isBlackWinning() {
+        return "Black".equalsIgnoreCase(getWinningColor());
+    }
+
+
+    @Override
+    public boolean isRedWinning() {
+        return "Red".equalsIgnoreCase(getWinningColor());
+    }
+
+    public void placeBet(String color) throws IllegalBetException {
+
+        if (wallet < 100) {
+            throw new IllegalBetException("Not enough funds to place the bet!");
         }
-        catch(IllegalBetException e)
-        {
-           System.out.println("Not enough funds for bet!");
+        if (!"Red".equalsIgnoreCase(color) && !"Black".equalsIgnoreCase(color)) {
+            throw new IllegalBetException("Invalid bet color!");
         }
+
         bettingColor = color;
         currentBet += 100;
         wallet -= 100;
     }
 
-    public void decideBet(){
-        if(Objects.equals(getWinningColor(), bettingColor)){
-        wallet = 100 ;
-        System.out.println("You have won the bet!");
-        }else
-        {
-            wallet -= 100;
-            System.out.println("You have lost the bet!");
+    public boolean decideBet() {
+
+        boolean won;
+        double multiplier;
+
+        switch (bettingColor.toLowerCase()) {
+            case "red":
+                won = isRedWinning();
+                multiplier = RedBet.redMultiplier;
+                break;
+            case "black":
+                won = isBlackWinning();
+                multiplier = BlackBet.blackMultiplier;
+                break;
+            default:
+                //should not occur since we validate in the placeBet()
+                throw new IllegalStateException("Unexpected color?");
         }
 
+        if (won) {
+            wallet += currentBet * multiplier;
+        }
+        //already lost money on the placeBet(), any additional lost would net a double money loss
+        // Reset bet state
+        currentBet = 0;
+        bettingColor = null;
+        return won;
     }
-
-
 }
+
+

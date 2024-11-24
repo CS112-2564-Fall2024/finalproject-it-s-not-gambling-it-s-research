@@ -1,8 +1,8 @@
 package edu.miracosta.cs112.finalproject.finalproject;
 
-import java.util.Objects;
+public interface RedBet {
+    final double redMultiplier = 2.25;
 
-public interface RedBet{
-    final double redMultiplier = 2.15;
-
+    public boolean isRedWinning();
 }
+
