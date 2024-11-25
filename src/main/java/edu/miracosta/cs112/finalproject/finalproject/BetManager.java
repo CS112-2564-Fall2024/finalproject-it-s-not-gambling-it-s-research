@@ -3,7 +3,7 @@ package edu.miracosta.cs112.finalproject.finalproject;
 public class BetManager extends RouletteWheel implements RedBet, BlackBet {
     double wallet = 1000;
     double currentBet = 0;
-    String bettingColor;
+    String bettingColor = "Green";
 
     public BetManager() {
     }
@@ -59,29 +59,27 @@ public class BetManager extends RouletteWheel implements RedBet, BlackBet {
             throw new IllegalBetException("Invalid bet color!");
         }
 
-        bettingColor = color;
+        setBettingColor(color);
         currentBet += 100;
         wallet -= 100;
     }
 
-    public boolean decideBet() {
+    public void decideBet() {
 
         boolean won;
-        double multiplier;
-
-        switch (bettingColor.toLowerCase()) {
-            case "red":
+        double multiplier = switch (getBettingColor().toLowerCase()) {
+            case "red" -> {
                 won = isRedWinning();
-                multiplier = RedBet.redMultiplier;
-                break;
-            case "black":
+                yield RedBet.redMultiplier;
+            }
+            case "black" -> {
                 won = isBlackWinning();
-                multiplier = BlackBet.blackMultiplier;
-                break;
-            default:
+                yield BlackBet.blackMultiplier;
+            }
+            default ->
                 //should not occur since we validate in the placeBet()
-                throw new IllegalStateException("Unexpected color?");
-        }
+                    throw new IllegalStateException("Unexpected color?");
+        };
 
         if (won) {
             wallet += currentBet * multiplier;
@@ -89,8 +87,7 @@ public class BetManager extends RouletteWheel implements RedBet, BlackBet {
         //already lost money on the placeBet(), any additional lost would net a double money loss
         // Reset bet state
         currentBet = 0;
-        bettingColor = null;
-        return won;
+        bettingColor = "green";
     }
 }
 

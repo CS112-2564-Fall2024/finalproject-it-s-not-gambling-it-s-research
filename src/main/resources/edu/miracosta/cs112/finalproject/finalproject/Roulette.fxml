@@ -8,12 +8,12 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miracosta.cs112.finalproject.finalproject.RouletteController">
    <children>
       <ImageView fitHeight="199.0" fitWidth="233.0" layoutX="142.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="howToButton" layoutX="55.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleHowToButton" text="How to Play" />
       <Button fx:id="spinButton" layoutX="210.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleSpinButton" prefHeight="39.0" prefWidth="97.0" text="SPIN!" />
-      <Button fx:id="blackBetButton" layoutX="196.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleBlackButton" prefHeight="49.0" prefWidth="54.0" text="Bet on Black" wrapText="true" />
+      <Button fx:id="blackBetButton" layoutX="196.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleBlackBetButton" prefHeight="49.0" prefWidth="54.0" text="Bet on Black" wrapText="true" />
       <Button fx:id="redBetButton" layoutX="268.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleRedBetButton" prefHeight="49.0" prefWidth="54.0" text="Bet on Red" wrapText="true" />
       <Label fx:id="walletLabel" layoutX="400.0" layoutY="49.0" text="Wallet : " />
       <Label fx:id="currentBetLabel" layoutX="388.0" layoutY="79.0" text="Current Bet: " />

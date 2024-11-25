@@ -31,7 +31,7 @@ public class RouletteWheel {
 
     private final List<RouletteSlot> wheel = new ArrayList<>();
     private final Random random = new Random();
-    private RouletteSlot winningSlot;
+    public RouletteSlot winningSlot;
 
     public RouletteWheel() {
         initializeWheel();

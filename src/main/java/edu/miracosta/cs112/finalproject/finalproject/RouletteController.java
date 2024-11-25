@@ -56,7 +56,6 @@ public class RouletteController {
         winningColor = wheel.getWinningColor();
 
         //animateRoulette();
-
         bet.decideBet();
 
         updateLabels();

@@ -11,9 +11,9 @@ import java.io.IOException;
 public class RouletteApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RouletteApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader(RouletteApplication.class.getResource("Roulette.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 530.0, 500.0);
+        stage.setTitle("Roulette Game");
         stage.setScene(scene);
         stage.show();
     }
