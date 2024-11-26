@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miracosta.cs112.finalproject.finalproject.RouletteController">
+<AnchorPane id="cu" maxHeight="600.0" maxWidth="600.0" minHeight="400.0" minWidth="490.0" prefHeight="530.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miracosta.cs112.finalproject.finalproject.RouletteController">
    <children>
-      <ImageView fitHeight="199.0" fitWidth="233.0" layoutX="142.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="rouletteWheel" fitHeight="199.0" fitWidth="233.0" layoutX="142.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="howToButton" layoutX="55.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleHowToButton" text="How to Play" />
       <Button fx:id="spinButton" layoutX="210.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleSpinButton" prefHeight="39.0" prefWidth="97.0" text="SPIN!" />
       <Button fx:id="blackBetButton" layoutX="196.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleBlackBetButton" prefHeight="49.0" prefWidth="54.0" text="Bet on Black" wrapText="true" />
@@ -30,17 +29,17 @@
                   <Font size="12.0" />
                </font>
             </Label>
-            <Label fx:id="lastWinNumber3" alignment="CENTER" prefHeight="30.0" prefWidth="54.0" text="history" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="lastWinNumber2" alignment="CENTER" prefHeight="30.0" prefWidth="54.0" text="history" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
-            <Label fx:id="lastWinNumber2" alignment="CENTER" prefHeight="32.0" prefWidth="54.0" text="history" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="lastWinNumber3" alignment="CENTER" prefHeight="32.0" prefWidth="54.0" text="history" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="lastWinNumber4" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="history" textAlignment="CENTER" wrapText="true">
+            <Label id="lastWinNumber4" fx:id="lastWinNumber4" alignment="CENTER" prefHeight="27.0" prefWidth="54.0" text="history" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="10.0" />
                </font>

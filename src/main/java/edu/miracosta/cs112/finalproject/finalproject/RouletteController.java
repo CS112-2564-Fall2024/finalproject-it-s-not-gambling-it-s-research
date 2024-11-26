@@ -1,25 +1,36 @@
 package edu.miracosta.cs112.finalproject.finalproject;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
-
 public class RouletteController {
 
     @FXML
-    private Label walletLabel, currentBetLabel, winNumber,
-            lastWinNumber0, lastWinNumber1, lastWinNumber2,
-            lastWinNumber3, lastWinNumber4;
+    private Label walletLabel;
+    @FXML
+    private Label currentBetLabel;
+    @FXML
+    private Label winNumber;
+    @FXML
+    private Label lastWinNumber0;
+    @FXML
+    private Label lastWinNumber1;
+    @FXML
+    private Label lastWinNumber2;
+    @FXML
+    private Label lastWinNumber3;
+    @FXML
+    private Label lastWinNumber4;
 
     @FXML
     private Button howToButton, spinButton, redBetButton, blackBetButton;
 
     @FXML
-    private ImageView rouletteWheel;
+    public ImageView rouletteWheel;
 
     @FXML
     private Circle rouletteBall;
@@ -29,10 +40,17 @@ public class RouletteController {
     private String winningColor;
     private int winningNumber;
 
+    public void initialize(){
+        walletLabel.setText("Wallet: $" + bet.getWallet());
+        currentBetLabel.setText("Current Bet: $" + bet.getCurrentBet());
+        winNumber.setText("Haven't played yet.");
+        lastWinNumber0.setText(" ");
+        lastWinNumber1.setText(" ");
+        lastWinNumber2.setText(" ");
+        lastWinNumber3.setText(" ");
+        lastWinNumber4.setText(" ");
+        wheel.RouletteWheel();
 
-    @FXML
-    public void intialize(){
-        updateLabels();
     }
 
     private void updateLabels(){
@@ -56,10 +74,10 @@ public class RouletteController {
         winningColor = wheel.getWinningColor();
 
         //animateRoulette();
-        bet.decideBet();
+        boolean b = bet.decideBet();
 
         updateLabels();
-        //updateWinningHistory();
+        updateWinningHistory();
 
     }
     @FXML

@@ -1,6 +1,6 @@
 package edu.miracosta.cs112.finalproject.finalproject;
 
-public class BetManager extends RouletteWheel implements RedBet, BlackBet {
+public class BetManager extends RouletteWheel implements RedBet, BlackBet,GreenBet{
     double wallet = 1000;
     double currentBet = 0;
     String bettingColor = "Green";
@@ -23,9 +23,7 @@ public class BetManager extends RouletteWheel implements RedBet, BlackBet {
         this.wallet = wallet;
     }
 
-    public double getWallet() {
-        return wallet;
-    }
+    public double getWallet() {return wallet; }
 
     public double getCurrentBet() {
         return currentBet;
@@ -43,11 +41,13 @@ public class BetManager extends RouletteWheel implements RedBet, BlackBet {
     public boolean isBlackWinning() {
         return "Black".equalsIgnoreCase(getWinningColor());
     }
-
-
     @Override
     public boolean isRedWinning() {
         return "Red".equalsIgnoreCase(getWinningColor());
+    }
+    @Override
+    public boolean isGreenWinning() {
+        return "Green".equalsIgnoreCase(getWinningColor());
     }
 
     public void placeBet(String color) throws IllegalBetException {
@@ -55,7 +55,7 @@ public class BetManager extends RouletteWheel implements RedBet, BlackBet {
         if (wallet < 100) {
             throw new IllegalBetException("Not enough funds to place the bet!");
         }
-        if (!"Red".equalsIgnoreCase(color) && !"Black".equalsIgnoreCase(color)) {
+        if (!"Red".equalsIgnoreCase(color) && !"Black".equalsIgnoreCase(color) && !"Green".equalsIgnoreCase(color)) {
             throw new IllegalBetException("Invalid bet color!");
         }
 
@@ -64,31 +64,38 @@ public class BetManager extends RouletteWheel implements RedBet, BlackBet {
         wallet -= 100;
     }
 
-    public void decideBet() {
-
+    public boolean decideBet() {
         boolean won;
-        double multiplier = switch (getBettingColor().toLowerCase()) {
-            case "red" -> {
+        double multiplier;
+
+        if (bettingColor == null || bettingColor.isBlank()) {
+            throw new IllegalStateException("Betting color not set!");
+        }
+
+        switch (bettingColor.toLowerCase()) {
+            case "red":
                 won = isRedWinning();
-                yield RedBet.redMultiplier;
-            }
-            case "black" -> {
-                won = isBlackWinning();
-                yield BlackBet.blackMultiplier;
-            }
-            default ->
-                //should not occur since we validate in the placeBet()
-                    throw new IllegalStateException("Unexpected color?");
-        };
+                multiplier = RedBet.redMultiplier;
+                break;
+            case "black":
+                if (isBlackWinning()) won = true;
+                else won = false;
+                multiplier = BlackBet.blackMultiplier;
+                break;
+            case "green":
+                won = isGreenWinning();
+                multiplier = GreenBet.greenMultiplier;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected betting color: " + bettingColor);
+        }
 
         if (won) {
             wallet += currentBet * multiplier;
         }
-        //already lost money on the placeBet(), any additional lost would net a double money loss
-        // Reset bet state
-        currentBet = 0;
-        bettingColor = "green";
+        return won;
     }
+
 }
 
 

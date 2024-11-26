@@ -33,17 +33,18 @@ public class RouletteWheel {
     private final Random random = new Random();
     public RouletteSlot winningSlot;
 
-    public RouletteWheel() {
+    public void RouletteWheel() {
         initializeWheel();
     }
 
-    private void initializeWheel() {
+    void initializeWheel() {
         wheel.add(new RouletteSlot(0, "Green")); // 0 is green
         // Red and Black numbers alternate
         for (int i = 1; i <= 35; i++) {
             String color = (i % 2 == 0) ? "Black" : "Red";
             wheel.add(new RouletteSlot(i, color));
         }
+        wheel.add(new RouletteSlot(36, "Green"));//00 Green too
     }
 
 
@@ -57,6 +58,9 @@ public class RouletteWheel {
     }
 
     public String getWinningColor() {
+        if (winningSlot == null) {
+            throw new IllegalStateException("Wheel has not been spun yet!");
+        }
         return winningSlot.getColor();
     }
 
