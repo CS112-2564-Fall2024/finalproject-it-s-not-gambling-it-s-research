@@ -19,5 +19,8 @@ public class RouletteApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+//        RouletteWheel testWheel = new RouletteWheel();
+//        testWheel.spinWheel();
+//        System.out.println("Winning Slot: " + testWheel.getWinningNumber() + " (" + testWheel.getWinningColor() + ")");
     }
 }

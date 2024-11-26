@@ -4,14 +4,17 @@ public class BetManager extends RouletteWheel implements RedBet, BlackBet,GreenB
     double wallet = 1000;
     double currentBet = 0;
     String bettingColor = "Green";
+    private RouletteWheel wheel;
 
-    public BetManager() {
+    public BetManager(RouletteWheel wheel) {
+        this.wheel = wheel;
     }
 
-    public BetManager(double wallet, double currentBet, String bettingColor) {
+    public BetManager(double wallet, double currentBet, String bettingColor, RouletteWheel wheel) {
         this.wallet = wallet;
         this.currentBet = currentBet;
         this.bettingColor = bettingColor;
+        this.wheel = wheel;
     }
 
 
@@ -53,24 +56,25 @@ public class BetManager extends RouletteWheel implements RedBet, BlackBet,GreenB
     public void placeBet(String color) throws IllegalBetException {
 
         if (wallet < 100) {
+            System.out.println("Insufficient wallet balance to place a bet."); // Debug log
             throw new IllegalBetException("Not enough funds to place the bet!");
         }
         if (!"Red".equalsIgnoreCase(color) && !"Black".equalsIgnoreCase(color) && !"Green".equalsIgnoreCase(color)) {
+            System.out.println("Invalid betting color: " + color); // Debug log
             throw new IllegalBetException("Invalid bet color!");
         }
-
+        System.out.println("Placing bet on: " + color); // Debug log
         setBettingColor(color);
         currentBet += 100;
         wallet -= 100;
     }
 
     public boolean decideBet() {
-        boolean won;
-        double multiplier;
-
         if (bettingColor == null || bettingColor.isBlank()) {
             throw new IllegalStateException("Betting color not set!");
         }
+        boolean won;
+        double multiplier;
 
         switch (bettingColor.toLowerCase()) {
             case "red":

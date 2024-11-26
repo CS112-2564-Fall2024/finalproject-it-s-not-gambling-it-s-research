@@ -8,7 +8,7 @@ public class RouletteWheel {
 
     private static class RouletteSlot {
         private final int number;
-        private final String color;
+        private String color = "Green";
 
         public RouletteSlot(int number, String color) {
             this.number = number;
@@ -33,32 +33,40 @@ public class RouletteWheel {
     private final Random random = new Random();
     public RouletteSlot winningSlot;
 
-    public void RouletteWheel() {
+    public RouletteWheel() {
         initializeWheel();
     }
 
-    void initializeWheel() {
+    public void initializeWheel() {
+        wheel.clear();
         wheel.add(new RouletteSlot(0, "Green")); // 0 is green
         // Red and Black numbers alternate
-        for (int i = 1; i <= 35; i++) {
+        for (int i = 2; i <= 35; i++) {
             String color = (i % 2 == 0) ? "Black" : "Red";
             wheel.add(new RouletteSlot(i, color));
-        }
-        wheel.add(new RouletteSlot(36, "Green"));//00 Green too
+            System.out.println("Wheel initialized with " + wheel.size() + " slots.");//debug
+        }wheel.add(new RouletteSlot(37, "Green"));
     }
 
 
     public void spinWheel() {
+        System.out.println("spinWheel() called"); // Debug log
         int index = random.nextInt(wheel.size());
         winningSlot = wheel.get(index);
+        System.out.println("Wheel spun. Winning slot: " + winningSlot); // Debug log
     }
 
     public int getWinningNumber() {
+        if (winningSlot == null) {
+            System.out.println("getWinningNumber() called, but wheel not spun yet."); // Debug log
+            throw new IllegalStateException("Wheel has not been spun yet!");
+        }
         return winningSlot.getNumber();
     }
 
     public String getWinningColor() {
         if (winningSlot == null) {
+            System.out.println("getWinningColor() called, but wheel not spun yet."); // Debug log
             throw new IllegalStateException("Wheel has not been spun yet!");
         }
         return winningSlot.getColor();
@@ -66,6 +74,9 @@ public class RouletteWheel {
 
     @Override
     public String toString() {
+        if (winningSlot == null) {
+            return "No winning number yet! Spin the wheel.";
+        }
         return "Winning Number: " + getWinningNumber() + " (" + getWinningColor() + ")";
     }
 }
