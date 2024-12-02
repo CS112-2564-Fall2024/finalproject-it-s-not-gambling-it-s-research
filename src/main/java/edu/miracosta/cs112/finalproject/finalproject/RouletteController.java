@@ -1,12 +1,15 @@
 package edu.miracosta.cs112.finalproject.finalproject;
 
+import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +60,13 @@ public class RouletteController {
         lastWinNumber2.setText(" ");
         lastWinNumber3.setText(" ");
         lastWinNumber4.setText(" ");
+        Image image = null;
+
+            URL imageURL = RouletteApplication.class.getResource("/edu/miracosta/cs112/finalproject/finalproject/Image/rouletteWheel.png");
+            if(imageURL != null) {
+                image = new Image(imageURL.toString());
+            }
+            rouletteWheel.setImage(image);
 
     }
 
@@ -103,7 +113,7 @@ public class RouletteController {
         {System.out.println("Please place bet before spinning the wheel");}
     }
     @FXML
-    private void handleRedBetButton(ActionEvent event){
+    private void handleRedBetButton(ActionEvent event) throws IllegalBetException{
         try{
             bet.placeBet("Red");
             updateLabels();
@@ -122,7 +132,7 @@ public class RouletteController {
         }
     }
     @FXML
-    private void handleGreenBetButton(ActionEvent event){
+    private void handleGreenBetButton(ActionEvent event) throws IllegalBetException{
         try{
             bet.placeBet("Green");
             updateLabels();

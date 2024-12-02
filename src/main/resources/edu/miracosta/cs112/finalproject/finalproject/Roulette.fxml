@@ -21,7 +21,7 @@
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
-      <Button id="greenBetButton" fx:id="redBetButton" layoutX="347.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleGreenBetButton" prefHeight="65.0" prefWidth="70.0" text="Bet on Red" textFill="#dd0808" wrapText="true">
+      <Button fx:id="redBetButton" layoutX="347.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleRedBetButton" prefHeight="65.0" prefWidth="70.0" text="Bet on Red" textFill="#dd0808" wrapText="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
@@ -66,7 +66,7 @@
             </Label>
          </children>
       </VBox>
-      <Button fx:id="blackBetButton1" layoutX="267.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleBlackBetButton" prefHeight="65.0" prefWidth="70.0" text="Bet on Green" textFill="#4b9a2c" wrapText="true">
+      <Button fx:id="greenBetButton" layoutX="267.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleGreenBetButton" prefHeight="65.0" prefWidth="70.0" text="Bet on Green" textFill="#4b9a2c" wrapText="true">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

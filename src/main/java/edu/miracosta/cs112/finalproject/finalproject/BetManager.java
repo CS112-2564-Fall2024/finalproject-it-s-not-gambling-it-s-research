@@ -92,10 +92,10 @@ public class BetManager implements RedBet, BlackBet,GreenBet{
             default:
                 throw new IllegalStateException("Unexpected betting color: " + bettingColor);
         }
-
         if (won) {
             wallet += currentBet * multiplier;
-        } currentBet = 0;
+        }
+        currentBet = 0;
         return won;
     }
 
