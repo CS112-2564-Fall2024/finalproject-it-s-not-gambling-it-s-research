@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RouletteController {
 
     @FXML
@@ -35,8 +38,7 @@ public class RouletteController {
     @FXML
     private Circle rouletteBall;
 
-    private String winningColor;
-    private int winningNumber;
+
     private static final RouletteWheel wheel = new RouletteWheel(); // Single instance
     private BetManager bet;
 
@@ -47,8 +49,8 @@ public class RouletteController {
 
 
     public void initialize(){
-        walletLabel.setText("Wallet: $" + bet.getWallet());
-        currentBetLabel.setText("Current Bet: $" + bet.getCurrentBet());
+        walletLabel.setText(String.format("Wallet: $%.2f", bet.getWallet()));
+        currentBetLabel.setText(String.format("Current Bet: $%.2f" , bet.getCurrentBet()));
         winNumber.setText("Haven't played yet.");
         lastWinNumber0.setText(" ");
         lastWinNumber1.setText(" ");
@@ -60,33 +62,39 @@ public class RouletteController {
 
     private void updateLabels(){
 
-        walletLabel.setText("Wallet: $" + bet.getWallet());
-        currentBetLabel.setText("Current Bet: $" + bet.getCurrentBet());
-    }
-    private void updateHistory(){
-        winNumber.setText("Winning Number: " + winningNumber+ " (" + winningColor + ")");
-        lastWinNumber0.setText(winningNumber + " (" + winningColor + ")");
-        lastWinNumber1.setText(lastWinNumber0.getText());
-        lastWinNumber2.setText(lastWinNumber1.getText());
-        lastWinNumber3.setText(lastWinNumber2.getText());
-        lastWinNumber4.setText(lastWinNumber3.getText());
-
+        walletLabel.setText(String.format("Wallet: $%.2f", bet.getWallet()));
+        currentBetLabel.setText(String.format("Current Bet: $%.2f" , bet.getCurrentBet()));
     }
 
-//handle buttons
+    private final List<String> history = new ArrayList<>(List.of("", "", "", "", "")); // Initializes empty history with 5 slots.
+    private void updateHistory() {
+
+        String currentResult = wheel.getWinningNumber() + " (" + wheel.getWinningColor() + ")";
+
+        winNumber.setText("Winning Number: " + currentResult);
+
+        history.add(0, currentResult);
+        if (history.size() > 5) {
+            history.remove(5);
+        }
+        lastWinNumber0.setText(history.size() > 0 ? history.get(0) : "");
+        lastWinNumber1.setText(history.size() > 1 ? history.get(1) : "");
+        lastWinNumber2.setText(history.size() > 2 ? history.get(2) : "");
+        lastWinNumber3.setText(history.size() > 3 ? history.get(3) : "");
+        lastWinNumber4.setText(history.size() > 4 ? history.get(4) : "");
+    }
+
+
+    //handle buttons
     @FXML
     private void handleHowToButton(ActionEvent event){
-    //open to new how toController?
-    //System.print
+        //System.print
+        //open to new how toController?
     }
     @FXML
     private void handleSpinButton(ActionEvent event) {
        try{
-        System.out.println("Spin button clicked."); // Debug log
         wheel.spinWheel();
-//        winningNumber = wheel.getWinningNumber();
-//        winningColor = wheel.getWinningColor();
-        System.out.println("Winning number: " + wheel.getWinningNumber() + ", color: " + wheel.getWinningColor()); // Debug log
         bet.decideBet();
         updateLabels();
         updateHistory();
@@ -112,6 +120,16 @@ public class RouletteController {
         }catch (IllegalBetException e){
             System.out.println("Not enough funds for bet!");
         }
+    }
+    @FXML
+    private void handleGreenBetButton(ActionEvent event){
+        try{
+            bet.placeBet("Green");
+            updateLabels();
+        }catch (IllegalBetException e){
+            System.out.println("Not enough funds for bet!");
+        }
+
     }
 
     //private void animateRoulette(){}

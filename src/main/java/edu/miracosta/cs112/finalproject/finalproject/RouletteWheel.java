@@ -33,32 +33,26 @@ public class RouletteWheel {
     private final Random random = new Random();
     public RouletteSlot winningSlot;
 
+    public void initializeWheel() {
+        wheel.clear();
+        wheel.add(new RouletteSlot(0, "Green")); // 0 is green
+        for (int i = 2; i <= 35; i++) {
+            String color = (i % 2 == 0) ? "Black" : "Red";
+            wheel.add(new RouletteSlot(i, color));
+        }wheel.add(new RouletteSlot(37, "Green"));
+    }
+
     public RouletteWheel() {
         initializeWheel();
     }
 
-    public void initializeWheel() {
-        wheel.clear();
-        wheel.add(new RouletteSlot(0, "Green")); // 0 is green
-        // Red and Black numbers alternate
-        for (int i = 2; i <= 35; i++) {
-            String color = (i % 2 == 0) ? "Black" : "Red";
-            wheel.add(new RouletteSlot(i, color));
-            System.out.println("Wheel initialized with " + wheel.size() + " slots.");//debug
-        }wheel.add(new RouletteSlot(37, "Green"));
-    }
-
-
     public void spinWheel() {
-        System.out.println("spinWheel() called"); // Debug log
         int index = random.nextInt(wheel.size());
         winningSlot = wheel.get(index);
-        System.out.println("Wheel spun. Winning slot: " + winningSlot); // Debug log
     }
 
     public int getWinningNumber() {
         if (winningSlot == null) {
-            System.out.println("getWinningNumber() called, but wheel not spun yet."); // Debug log
             throw new IllegalStateException("Wheel has not been spun yet!");
         }
         return winningSlot.getNumber();
@@ -66,7 +60,6 @@ public class RouletteWheel {
 
     public String getWinningColor() {
         if (winningSlot == null) {
-            System.out.println("getWinningColor() called, but wheel not spun yet."); // Debug log
             throw new IllegalStateException("Wheel has not been spun yet!");
         }
         return winningSlot.getColor();

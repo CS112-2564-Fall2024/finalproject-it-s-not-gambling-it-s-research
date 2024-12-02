@@ -11,7 +11,7 @@ public class RouletteApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader;
         fxmlLoader = new FXMLLoader(RouletteApplication.class.getResource("Roulette.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 520, 500);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Roulette Game");
         stage.setScene(scene);
         stage.show();
@@ -19,8 +19,5 @@ public class RouletteApplication extends Application {
 
     public static void main(String[] args) {
         launch();
-//        RouletteWheel testWheel = new RouletteWheel();
-//        testWheel.spinWheel();
-//        System.out.println("Winning Slot: " + testWheel.getWinningNumber() + " (" + testWheel.getWinningColor() + ")");
     }
 }
