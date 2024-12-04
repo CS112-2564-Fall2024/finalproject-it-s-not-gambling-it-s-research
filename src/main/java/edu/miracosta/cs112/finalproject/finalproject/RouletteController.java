@@ -1,6 +1,7 @@
 package edu.miracosta.cs112.finalproject.finalproject;
 
 import com.sun.tools.javac.Main;
+import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -106,14 +107,15 @@ public class RouletteController {
     @FXML
     private void handleSpinButton(ActionEvent event) {
        try{
-       animateRoulette();
-        wheel.spinWheel();
-        bet.decideBet();
-        updateLabels();
-        updateHistory();
+            animateRoulette();
+            animateBall();
+            wheel.spinWheel();
+            bet.decideBet();
+            updateLabels();
+            updateHistory();
         }
         catch (IllegalStateException e)
-        {System.out.println("Please place bet before spinning the wheel");}
+            {System.out.println("Please place bet before spinning the wheel");}
     }
     @FXML
     private void handleRedBetButton(ActionEvent event) throws IllegalBetException{
@@ -147,10 +149,40 @@ public class RouletteController {
 
     private void animateRoulette(){
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(3), rouletteWheel);
-        rotateTransition.setByAngle(185 * 5);
+        rotateTransition.setByAngle(188 * 7);
         rotateTransition.setCycleCount(1);
         rotateTransition.setInterpolator(javafx.animation.Interpolator.EASE_OUT);
-        rotateTransition.play();}
+        rotateTransition.play();
+    }
+
+    private void animateBall() {
+        double centerX = 144.5;
+        double centerY = 211.5;
+        Circle orbitPath = new Circle();
+        orbitPath.setRadius(136);
+        orbitPath.setCenterX(centerX);
+        orbitPath.setCenterY(centerY);
+
+
+        rouletteBall.setLayoutX(centerX);
+        rouletteBall.setLayoutY(centerY - orbitPath.getRadius());
+
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(3));
+        pathTransition.setPath(orbitPath);
+        pathTransition.setNode(rouletteBall);
+        pathTransition.setInterpolator(javafx.animation.Interpolator.LINEAR);
+        pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pathTransition.setCycleCount(1);
+        pathTransition.setRate(-1);
+        pathTransition.play();
+
+        RotateTransition ballRotateTransition = new RotateTransition(Duration.seconds(3));
+        ballRotateTransition.setByAngle(180 * 5);
+        ballRotateTransition.setCycleCount(1);
+        ballRotateTransition.setInterpolator(javafx.animation.Interpolator.EASE_OUT);
+        ballRotateTransition.play();
+    }
 
 }
 
