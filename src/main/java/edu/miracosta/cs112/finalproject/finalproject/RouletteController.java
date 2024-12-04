@@ -1,6 +1,7 @@
 package edu.miracosta.cs112.finalproject.finalproject;
 
 import com.sun.tools.javac.Main;
+import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -104,6 +106,7 @@ public class RouletteController {
     @FXML
     private void handleSpinButton(ActionEvent event) {
        try{
+       animateRoulette();
         wheel.spinWheel();
         bet.decideBet();
         updateLabels();
@@ -142,7 +145,12 @@ public class RouletteController {
 
     }
 
-    //private void animateRoulette(){}
+    private void animateRoulette(){
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(3), rouletteWheel);
+        rotateTransition.setByAngle(185 * 5);
+        rotateTransition.setCycleCount(1);
+        rotateTransition.setInterpolator(javafx.animation.Interpolator.EASE_OUT);
+        rotateTransition.play();}
 
 }
 

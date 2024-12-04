@@ -10,8 +10,8 @@
 
 <AnchorPane id="cu" maxHeight="627.0" maxWidth="600.0" minHeight="400.0" minWidth="490.0" prefHeight="627.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miracosta.cs112.finalproject.finalproject.RouletteController">
    <children>
-      <ImageView fx:id="rouletteWheel" fitHeight="299.0" fitWidth="319.0" layoutX="125.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-      <Circle fx:id="rouletteBall" centerX="258.0" centerY="160.0" fill="white" layoutX="26.0" layoutY="11.0" radius="10.0" stroke="black" />
+      <ImageView fx:id="rouletteWheel" fitHeight="299.0" fitWidth="319.0" layoutX="135.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true" />
+      <Circle fx:id="rouletteBall" centerX="258.0" centerY="160.0" fill="white" layoutX="20.0" layoutY="1.0" radius="10.0" stroke="black" />
       <Button fx:id="howToButton" layoutX="22.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleHowToButton" prefHeight="49.0" prefWidth="97.0" text="How to Play" />
       <Button fx:id="spinButton" layoutX="209.0" layoutY="449.0" mnemonicParsing="false" onAction="#handleSpinButton" prefHeight="65.0" prefWidth="173.0" text="SPIN!" textFill="#d17311">
          <font>
