@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miracosta.cs112.finalproject.finalproject.RouletteController">
+   <children>
+      <Label fx:id="howTo1" alignment="CENTER" layoutX="139.0" layoutY="80.0" prefHeight="92.0" prefWidth="323.0" text="Step 1: Place a color bet, each button press is 100 dollars. You can only be on one color per spin." wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="howTo2" alignment="CENTER" layoutX="139.0" layoutY="154.0" prefHeight="92.0" prefWidth="323.0" text="Step 2: SPIN TO WIN!! " wrapText="true">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="howTo3" alignment="CENTER" layoutX="139.0" layoutY="246.0" prefHeight="92.0" prefWidth="323.0" text="Winning numbers and colors are displayed along right side of wheel." wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
