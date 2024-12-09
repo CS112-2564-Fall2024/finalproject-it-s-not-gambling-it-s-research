@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miracosta.cs112.finalproject.finalproject.RouletteController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.miracosta.cs112.finalproject.finalproject.HelpController">
    <children>
       <Label fx:id="howTo1" alignment="CENTER" layoutX="139.0" layoutY="80.0" prefHeight="92.0" prefWidth="323.0" text="Step 1: Place a color bet, each button press is 100 dollars. You can only be on one color per spin." wrapText="true">
          <font>

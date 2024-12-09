@@ -106,11 +106,23 @@ public class RouletteController {
 
     //handle buttons
     @FXML
-    public void handleHowToButton() throws IOException {
+    private void handleHowToButton() throws IOException {
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(RouletteApplication.class.getResource("Help.fxml"));
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        // Load the FXML file, checking for null to avoid a possible exception
+        URL fxmlUrl = RouletteApplication.class.getResource("/edu/miracosta/cs112/finalproject/finalproject/Help.fxml");
+        if (fxmlUrl == null) {
+            throw new IOException("FXML file 'Help.fxml' could not be found.");
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
+        stage.setTitle("How To");
+
+        // Get the controller and proceed
+        //RouletteController controller = fxmlLoader.getController();
         stage.show();
     }
     @FXML
